@@ -4,16 +4,20 @@ import os
 import csv
 from selenium.webdriver.common.by import By
 
+#Acessa o site
 driver = webdriver.Chrome()
 driver.get("https://ge.globo.com/futebol/futebol-internacional/futebol-ingles/")
 sleep(10) #aberto durante 10 segundos
 
+#Importa os dados
 lista_times = driver.find_elements(By.XPATH, "//strong[@class='classificacao__equipes classificacao__equipes--nome']")
 lista_pontos = driver.find_elements(By.XPATH, "//td[@class='classificacao__pontos classificacao__pontos--ponto']")
 classificacoes = driver.find_elements(By.XPATH, "//td[@class='classificacao__pontos']")
 
+#Separa os dados de 'classificacao__pontos', que não têm labels em grupos de 8
 estatisticas_por_time = [classificacoes[i:i+8] for i in range(0, len(classificacoes), 8)]
 
+#Grava os dados no CSV
 with open('classificacao.csv', 'w', newline='', encoding='utf-8') as arquivo:
     writer = csv.writer(arquivo)
     writer.writerow(["Time", "Pontos", "Jogos", "Vitórias", "Empates", "Derrotas", "Gols pró", "Gols contra", "Saldo de gols", "Aproveitamento"])
@@ -28,4 +32,5 @@ input('Toque em qualquer tecla para encerrar')
 
 import pandas as pd
 
+#Gera o arquivo CSV
 arquivo = pd.read_csv("classificacao.csv")
