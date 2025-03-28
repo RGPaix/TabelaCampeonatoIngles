@@ -35,7 +35,7 @@ plt.xticks(fontsize=10, rotation='vertical', va='center', ha='right')
 plt.tight_layout()
 plt.show()
 
-# Gráfico de barras agrupadas com gols pó e gols contra de cada time
+# Gráfico de barras agrupadas com gols pró e gols contra de cada time
 plt.figure(figsize=(10, 6))
 bar_height = 0.35  # Largura das barras
 index = range(len(df['Time']))  # Posições no eixo X
@@ -66,7 +66,7 @@ plt.pie(df['Percentual'],
         startangle=90,
         pctdistance=0.85,
         textprops={
-            'rotation': 30,  # Rotação de 45 graus
+            'rotation': 30,  # Rotação
             'ha': 'center',  # Alinhamento horizontal central
             'va': 'center',  # Alinhamento vertical central
             'fontsize': 10  # Tamanho da fonte
